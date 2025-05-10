@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+void converterTemperatura(float valor, char origem, char destino) {
+    float resultado;
+
+    if (origem == destino) {
+        resultado = valor;
+    } else if (origem == 'C') {
+        if (destino == 'F')
+            resultado = (valor * 9/5) + 32;
+        else if (destino == 'K')
+            resultado = valor + 273.15;
+    } else if (origem == 'F') {
+        if (destino == 'C')
+            resultado = (valor - 32) * 5/9;
+        else if (destino == 'K')
+            resultado = ((valor - 32) * 5/9) + 273.15;
+    } else if (origem == 'K') {
+        if (destino == 'C')
+            resultado = valor - 273.15;
+        else if (destino == 'F')
+            resultado = ((valor - 273.15) * 9/5) + 32;
+    } else {
+        printf("Unidade de origem inválida.\n");
+        return;
+    }
+
+    printf("Resultado: %.2f %c\n", resultado, destino);
+}
+
+int main() {
+    float valor;
+    char origem, destino;
+
+    printf("Digite o valor da temperatura: ");
+    scanf("%f", &valor);
+
+    printf("Digite a unidade de origem (C, F ou K): ");
+    scanf(" %c", &origem);
+
+    printf("Digite a unidade de destino (C, F ou K): ");
+    scanf(" %c", &destino);
+
+    converterTemperatura(valor, origem, destino);
+
+    return 0;
+}
